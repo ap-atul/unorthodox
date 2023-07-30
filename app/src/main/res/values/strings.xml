@@ -2,4 +2,6 @@
     <string name="app_name">unorthodox</string>
     <string name="content_desc">story background art</string>
     <string name="server_error">Failed to connect to the underlords</string>
+    <string name="settings_label_content_desc">settings label</string>
+    <string name="invitation_text">Send you sacred scripts to us and get featured in hell\nEmail us at \northodox.app@proton.me</string>
 </resources>

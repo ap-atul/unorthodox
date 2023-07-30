@@ -20,6 +20,7 @@ import cult.unorthodox.tools.HeartbeatTool;
 import cult.unorthodox.tools.WindowTools;
 import cult.unorthodox.ui.home.adapter.StoryAdapter;
 import cult.unorthodox.ui.read.ReadActivity;
+import cult.unorthodox.ui.settings.SettingsDialog;
 
 public class MainActivity extends AppCompatActivity implements StoryAdapter.StoryClickedListener {
     private ActivityMainBinding binding;
@@ -31,10 +32,16 @@ public class MainActivity extends AppCompatActivity implements StoryAdapter.Stor
         super.onCreate(savedInstanceState);
         WindowTools.fullScreen(getWindow().getDecorView());
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding.settings.setOnClickListener(v -> launchDialog());
         heartbeat = new HeartbeatTool(MainActivity.this);
         db = FirebaseFirestore.getInstance();
         setContentView(binding.getRoot());
         loadData();
+    }
+
+    private void launchDialog() {
+        SettingsDialog dialog = new SettingsDialog(MainActivity.this);
+        dialog.show();
     }
 
     private void loadData() {
