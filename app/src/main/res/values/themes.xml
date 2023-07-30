@@ -1,0 +1,6 @@
+<resources>
+    <style name="Base.Theme.Unorthodox" parent="Theme.AppCompat.NoActionBar">
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+    <style name="Theme.Unorthodox" parent="Base.Theme.Unorthodox" />
+</resources>
