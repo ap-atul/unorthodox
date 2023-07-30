@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/root"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/art"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:foreground="@drawable/drop_shadow"
+        android:layout_height="400dp"
+        android:foreground="@drawable/drop_shadow_high"
         android:scaleType="centerCrop"
-        android:src="@drawable/article_2"
+        android:src="@drawable/article"
         android:contentDescription="@string/content_desc" />
 
     <TextView
@@ -28,20 +28,18 @@
         android:shadowRadius="1"
         android:text="The unknowns of the unexplored!"
         android:textColor="@color/text_high_color"
-        android:textSize="@dimen/text_title" />
+        android:textSize="@dimen/text_small_title" />
 
     <TextView
         android:id="@+id/holy_sub_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/action_bar_size"
+        android:layout_below="@id/art"
         android:ellipsize="end"
         android:maxLines="3"
         android:paddingHorizontal="@dimen/padding"
         android:text="sold my soul!"
         android:textColor="@color/text_high_color"
         android:textSize="@dimen/text_synopsis" />
-
 
 </RelativeLayout>

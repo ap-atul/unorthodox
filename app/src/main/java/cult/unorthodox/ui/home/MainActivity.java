@@ -1,7 +1,7 @@
 package cult.unorthodox.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.PagerSnapHelper;
@@ -9,11 +9,14 @@ import androidx.recyclerview.widget.SnapHelper;
 
 import java.util.Arrays;
 
+import cult.unorthodox.C;
 import cult.unorthodox.R;
 import cult.unorthodox.databinding.ActivityMainBinding;
 import cult.unorthodox.models.Story;
 import cult.unorthodox.tools.HeartbeatTool;
+import cult.unorthodox.tools.WindowTools;
 import cult.unorthodox.ui.home.adapter.StoryAdapter;
+import cult.unorthodox.ui.read.ReadActivity;
 
 public class MainActivity extends AppCompatActivity implements StoryAdapter.StoryClickedListener {
     private ActivityMainBinding binding;
@@ -22,12 +25,10 @@ public class MainActivity extends AppCompatActivity implements StoryAdapter.Stor
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN);
+        WindowTools.fullScreen(getWindow().getDecorView());
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         heartbeat = new HeartbeatTool(MainActivity.this);
         setContentView(binding.getRoot());
-
         addDummyData();
     }
 
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements StoryAdapter.Stor
 
     @Override
     public void onStoryClicked(Story story) {
-        // Unused
+        startActivity(new Intent(MainActivity.this, ReadActivity.class).putExtra(C.KEY_STORY_ID, story.getId()));
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

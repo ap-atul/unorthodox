@@ -1,21 +1,29 @@
 package cult.unorthodox.models;
 
-import java.util.List;
 
+@SuppressWarnings("ALL")
 public class Story {
+    private String id;
     private String title;
     private String subtitle;
     private int art;
-    private List<String> passages;
-    private String references;
 
-    public Story() {}
-    public Story(String title, String subtitle, int art, List<String> passages, String references) {
+    public Story() {
+    }
+
+    public Story(String id, String title, String subtitle, int art) {
+        this.id = id;
         this.title = title;
         this.subtitle = subtitle;
         this.art = art;
-        this.passages = passages;
-        this.references = references;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -40,21 +48,5 @@ public class Story {
 
     public void setArt(int art) {
         this.art = art;
-    }
-
-    public List<String> getPassages() {
-        return passages;
-    }
-
-    public void setPassages(List<String> passages) {
-        this.passages = passages;
-    }
-
-    public String getReferences() {
-        return references;
-    }
-
-    public void setReferences(String references) {
-        this.references = references;
     }
 }
