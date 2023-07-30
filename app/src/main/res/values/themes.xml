@@ -1,6 +1,10 @@
 <resources>
     <style name="Base.Theme.Unorthodox" parent="Theme.AppCompat.NoActionBar">
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowBackground">@color/background</item>
+        <item name="fontFamily">@font/fruktur</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowActivityTransitions">true</item>
     </style>
     <style name="Theme.Unorthodox" parent="Base.Theme.Unorthodox" />
 </resources>
