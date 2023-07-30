@@ -7,15 +7,13 @@
         android:interpolator="@android:anim/linear_interpolator"
         android:pivotX="50%"
         android:pivotY="50%"
-        android:toXScale="5"
-        android:toYScale="5" />
+        android:toXScale="20"
+        android:toYScale="20" />
 
-    <rotate
+    <alpha
+        android:fromAlpha="1"
+        android:toAlpha="0"
         android:duration="2000"
-        android:fromDegrees="0"
-        android:interpolator="@android:anim/linear_interpolator"
-        android:pivotX="50%"
-        android:pivotY="50%"
-        android:toDegrees="360" />
+        android:interpolator="@android:anim/linear_interpolator" />
 
 </set>
