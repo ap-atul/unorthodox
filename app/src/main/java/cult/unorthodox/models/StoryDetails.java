@@ -1,24 +1,31 @@
 package cult.unorthodox.models;
 
+import androidx.annotation.Keep;
+
 import java.util.List;
 
 @SuppressWarnings("ALL")
-public class StoryDetails extends Story {
+@Keep
+public class StoryDetails {
+    private String id;
     private List<String> passages;
-    private String references;
+    private List<String> references;
 
     public StoryDetails() {
     }
 
-    public StoryDetails(List<String> passages, String references) {
+    public StoryDetails(String id, List<String> passages, List<String> references) {
+        this.id = id;
         this.passages = passages;
         this.references = references;
     }
 
-    public StoryDetails(String id, String title, String subtitle, int art, List<String> passages, String references) {
-        super(id, title, subtitle, art);
-        this.passages = passages;
-        this.references = references;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public List<String> getPassages() {
@@ -29,11 +36,20 @@ public class StoryDetails extends Story {
         this.passages = passages;
     }
 
-    public String getReferences() {
+    public List<String> getReferences() {
         return references;
     }
 
-    public void setReferences(String references) {
+    public void setReferences(List<String> references) {
         this.references = references;
+    }
+
+    @Override
+    public String toString() {
+        return "StoryDetails{" +
+                "id='" + id + '\'' +
+                ", passages=" + passages +
+                ", references=" + references +
+                '}';
     }
 }

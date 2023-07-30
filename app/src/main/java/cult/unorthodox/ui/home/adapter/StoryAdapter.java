@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import cult.unorthodox.databinding.ItemStoryBinding;
@@ -35,7 +37,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.MyViewHolder
         Story story = stories.get(position);
         holder.binding.holyTitle.setText(story.getTitle());
         holder.binding.holySubTitle.setText(story.getSubtitle());
-        holder.binding.art.setImageResource(story.getArt());
+        Picasso.get().load(story.getArt()).into(holder.binding.art);
     }
 
     @Override

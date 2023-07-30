@@ -2,12 +2,15 @@ package cult.unorthodox.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.SnapHelper;
 
-import java.util.Arrays;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.List;
 
 import cult.unorthodox.C;
 import cult.unorthodox.R;
@@ -21,6 +24,7 @@ import cult.unorthodox.ui.read.ReadActivity;
 public class MainActivity extends AppCompatActivity implements StoryAdapter.StoryClickedListener {
     private ActivityMainBinding binding;
     private HeartbeatTool heartbeat;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,29 +32,26 @@ public class MainActivity extends AppCompatActivity implements StoryAdapter.Stor
         WindowTools.fullScreen(getWindow().getDecorView());
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         heartbeat = new HeartbeatTool(MainActivity.this);
+        db = FirebaseFirestore.getInstance();
         setContentView(binding.getRoot());
-        addDummyData();
+        loadData();
     }
 
-    private void addDummyData() {
-        Story a = new Story();
-        a.setTitle("This is red");
-        a.setSubtitle("like this is some kind of story");
-        a.setArt(R.drawable.article);
+    private void loadData() {
+        db.collection(C.COLLECTIONS_STORIES).get()
+                .addOnSuccessListener(snapshots -> handleStories(snapshots.toObjects(Story.class)))
+                .addOnFailureListener(e -> Toast.makeText(MainActivity.this, R.string.server_error, Toast.LENGTH_SHORT).show());
+    }
 
-        Story b = new Story();
-        b.setTitle("This is blue");
-        b.setSubtitle("like this is some kind of story");
-        b.setArt(R.drawable.article_2);
-
-        binding.rvStory.setAdapter(new StoryAdapter(Arrays.asList(a, b), heartbeat, this));
+    private void handleStories(List<Story> stories) {
+        binding.rvStory.setAdapter(new StoryAdapter(stories, heartbeat, this));
         SnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(binding.rvStory);
     }
 
     @Override
     public void onStoryClicked(Story story) {
-        startActivity(new Intent(MainActivity.this, ReadActivity.class).putExtra(C.KEY_STORY_ID, story.getId()));
+        startActivity(new Intent(MainActivity.this, ReadActivity.class).putExtra(C.KEY_STORY_ID, story));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

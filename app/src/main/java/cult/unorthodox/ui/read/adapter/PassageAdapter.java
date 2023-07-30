@@ -7,9 +7,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
-import cult.unorthodox.R;
 import cult.unorthodox.databinding.ItemDetailsBinding;
 import cult.unorthodox.databinding.ItemPassageBinding;
 import cult.unorthodox.models.Story;
@@ -40,10 +41,11 @@ public class PassageAdapter extends RecyclerView.Adapter<PassageAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull PassageAdapter.MyViewHolder holder, int position) {
         if(getItemViewType(position) == ITEM_PASSAGE) {
-            holder.passageBinding.tvPassage.setText(passages.get(position - 1));
+            holder.passageBinding.tvPassage.setText(passages.get(position - 1).replace("\n", ""));
         } else {
-            story.setArt(R.drawable.article_2);
-            holder.detailsBinding.art.setImageResource(R.drawable.article_2);
+            Picasso.get().load(story.getArt()).into(holder.detailsBinding.art);
+            holder.detailsBinding.holyTitle.setText(story.getTitle());
+            holder.detailsBinding.holySubTitle.setText(story.getSubtitle());
         }
     }
 

@@ -7,5 +7,6 @@
     android:fontFamily="@font/geo"
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/padding"
+    android:justificationMode="inter_word"
     android:textColor="@color/text_high_color"
     android:textSize="@dimen/text_normal" />
