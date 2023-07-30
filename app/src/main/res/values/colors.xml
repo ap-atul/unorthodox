@@ -3,6 +3,5 @@
     <item name="background" type="color">#000000</item>
 
     <item name="text_high_color" type="color">#D2D3D2</item>
-    <item name="text_low_color" type="color">#BDBDBD</item>
     <color name="text_shadow_white">#FFFFFF</color>
 </resources>

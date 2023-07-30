@@ -3,6 +3,5 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/fruktur</item>
         <item>@font/geo</item>
-        <item>@font/unifrakturmaguntia</item>
     </array>
 </resources>

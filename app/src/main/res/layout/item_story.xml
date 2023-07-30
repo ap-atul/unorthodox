@@ -10,7 +10,6 @@
         android:layout_height="match_parent"
         android:foreground="@drawable/drop_shadow"
         android:scaleType="centerCrop"
-        android:src="@drawable/article_2"
         android:contentDescription="@string/content_desc" />
 
     <TextView
@@ -26,7 +25,6 @@
         android:shadowDx="5"
         android:shadowDy="5"
         android:shadowRadius="1"
-        android:text="The unknowns of the unexplored!"
         android:textColor="@color/text_high_color"
         android:textSize="@dimen/text_title" />
 
@@ -39,7 +37,6 @@
         android:ellipsize="end"
         android:maxLines="3"
         android:paddingHorizontal="@dimen/padding"
-        android:text="sold my soul!"
         android:textColor="@color/text_high_color"
         android:textSize="@dimen/text_synopsis" />
 
