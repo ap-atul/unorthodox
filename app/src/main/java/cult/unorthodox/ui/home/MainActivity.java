@@ -1,7 +1,6 @@
 package cult.unorthodox.ui.home;
 
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,12 +12,12 @@ import java.util.Arrays;
 import cult.unorthodox.R;
 import cult.unorthodox.databinding.ActivityMainBinding;
 import cult.unorthodox.models.Story;
+import cult.unorthodox.tools.HeartbeatTool;
 import cult.unorthodox.ui.home.adapter.StoryAdapter;
 
 public class MainActivity extends AppCompatActivity implements StoryAdapter.StoryClickedListener {
     private ActivityMainBinding binding;
-    private Vibrator vibrator;
-
+    private HeartbeatTool heartbeat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +25,8 @@ public class MainActivity extends AppCompatActivity implements StoryAdapter.Stor
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+        heartbeat = new HeartbeatTool(MainActivity.this);
         setContentView(binding.getRoot());
-        vibrator = getSystemService(Vibrator.class);
 
         addDummyData();
     }
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements StoryAdapter.Stor
         b.setSubtitle("like this is some kind of story");
         b.setArt(R.drawable.article_2);
 
-        binding.rvStory.setAdapter(new StoryAdapter(Arrays.asList(a, b), vibrator, this));
+        binding.rvStory.setAdapter(new StoryAdapter(Arrays.asList(a, b), heartbeat, this));
         SnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(binding.rvStory);
     }

@@ -1,29 +1,25 @@
 package cult.unorthodox.ui.home.adapter;
 
-import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import cult.unorthodox.R;
 import cult.unorthodox.databinding.ItemStoryBinding;
 import cult.unorthodox.models.Story;
-import cult.unorthodox.tools.VibratorTools;
+import cult.unorthodox.tools.HeartbeatTool;
 
 public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.MyViewHolder> {
     private final List<Story> stories;
     private final StoryAdapter.StoryClickedListener listener;
-    private final Vibrator vibrator;
+    private final HeartbeatTool heartbeat;
 
-    public StoryAdapter(List<Story> stories, Vibrator vibrator, StoryAdapter.StoryClickedListener listener) {
+    public StoryAdapter(List<Story> stories, HeartbeatTool heartbeat, StoryAdapter.StoryClickedListener listener) {
         this.stories = stories;
-        this.vibrator = vibrator;
+        this.heartbeat = heartbeat;
         this.listener = listener;
     }
 
@@ -56,24 +52,9 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.MyViewHolder
         public MyViewHolder(@NonNull ItemStoryBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
-            Animation beat = AnimationUtils.loadAnimation(binding.getRoot().getContext(), R.anim.heart_beat);
-            beat.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-                    VibratorTools.vibrateHeartBeatPattern(vibrator);
-                }
 
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    listener.onStoryClicked(stories.get(getBindingAdapterPosition()));
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-                    // Unused
-                }
-            });
-            binding.root.setOnClickListener(v -> v.startAnimation(beat));
+            heartbeat.setListener(() -> listener.onStoryClicked(stories.get(getBindingAdapterPosition())));
+            binding.root.setOnClickListener(heartbeat::start);
         }
     }
 }
