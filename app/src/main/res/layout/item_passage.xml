@@ -5,8 +5,8 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/margin"
     android:fontFamily="@font/geo"
+    android:justificationMode="inter_word"
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/padding"
-    android:justificationMode="inter_word"
     android:textColor="@color/text_high_color"
     android:textSize="@dimen/text_normal" />

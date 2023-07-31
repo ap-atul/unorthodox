@@ -11,9 +11,9 @@
         android:toYScale="20" />
 
     <alpha
-        android:fromAlpha="1"
-        android:toAlpha="0"
         android:duration="2000"
-        android:interpolator="@android:anim/linear_interpolator" />
+        android:fromAlpha="1"
+        android:interpolator="@android:anim/linear_interpolator"
+        android:toAlpha="0" />
 
 </set>

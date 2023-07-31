@@ -10,6 +10,17 @@ import androidx.annotation.NonNull;
 @SuppressWarnings("ALL")
 @Keep
 public class Story implements Parcelable {
+    public static final Creator<Story> CREATOR = new Creator<Story>() {
+        @Override
+        public Story createFromParcel(Parcel in) {
+            return new Story(in);
+        }
+
+        @Override
+        public Story[] newArray(int size) {
+            return new Story[size];
+        }
+    };
     private String id;
     private String title;
     private String subtitle;
@@ -31,18 +42,6 @@ public class Story implements Parcelable {
         subtitle = in.readString();
         art = in.readString();
     }
-
-    public static final Creator<Story> CREATOR = new Creator<Story>() {
-        @Override
-        public Story createFromParcel(Parcel in) {
-            return new Story(in);
-        }
-
-        @Override
-        public Story[] newArray(int size) {
-            return new Story[size];
-        }
-    };
 
     public String getId() {
         return id;

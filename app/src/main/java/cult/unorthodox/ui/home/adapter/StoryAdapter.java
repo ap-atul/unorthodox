@@ -51,6 +51,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.MyViewHolder
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private final ItemStoryBinding binding;
+
         public MyViewHolder(@NonNull ItemStoryBinding binding) {
             super(binding.getRoot());
             this.binding = binding;

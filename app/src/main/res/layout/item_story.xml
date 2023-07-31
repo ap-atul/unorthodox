@@ -8,9 +8,9 @@
         android:id="@+id/art"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/content_desc"
         android:foreground="@drawable/drop_shadow"
-        android:scaleType="centerCrop"
-        android:contentDescription="@string/content_desc" />
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/holy_title"
