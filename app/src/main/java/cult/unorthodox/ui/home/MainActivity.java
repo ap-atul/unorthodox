@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.SnapHelper;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.List;
 
@@ -45,7 +46,9 @@ public class MainActivity extends AppCompatActivity implements StoryAdapter.Stor
     }
 
     private void loadData() {
-        db.collection(C.COLLECTIONS_STORIES).get()
+        db.collection(C.COLLECTIONS_STORIES)
+                .orderBy("timestamp", Query.Direction.DESCENDING)
+                .get()
                 .addOnSuccessListener(snapshots -> handleStories(snapshots.toObjects(Story.class)))
                 .addOnFailureListener(e -> Toast.makeText(MainActivity.this, R.string.server_error, Toast.LENGTH_SHORT).show());
     }
