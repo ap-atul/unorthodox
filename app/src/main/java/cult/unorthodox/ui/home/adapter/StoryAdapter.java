@@ -1,5 +1,6 @@
 package cult.unorthodox.ui.home.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -17,11 +18,9 @@ import cult.unorthodox.tools.HeartbeatTool;
 public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.MyViewHolder> {
     private final List<Story> stories;
     private final StoryAdapter.StoryClickedListener listener;
-    private final HeartbeatTool heartbeat;
 
-    public StoryAdapter(List<Story> stories, HeartbeatTool heartbeat, StoryAdapter.StoryClickedListener listener) {
+    public StoryAdapter(List<Story> stories, StoryAdapter.StoryClickedListener listener) {
         this.stories = stories;
-        this.heartbeat = heartbeat;
         this.listener = listener;
     }
 
@@ -56,8 +55,13 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.MyViewHolder
             super(binding.getRoot());
             this.binding = binding;
 
-            heartbeat.setListener(() -> listener.onStoryClicked(stories.get(getBindingAdapterPosition())));
-            binding.root.setOnClickListener(heartbeat::start);
+            binding.root.setOnClickListener(view -> {
+                HeartbeatTool tool = new HeartbeatTool(view.getContext());
+                tool.start(view, () -> {
+                    Log.d("DEBUG", "finished clicked on " + getBindingAdapterPosition());
+                    listener.onStoryClicked(stories.get(getBindingAdapterPosition()));
+                });
+            });
         }
     }
 }

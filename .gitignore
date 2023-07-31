@@ -18,3 +18,4 @@ local.properties
 *.json
 release/
 gradle/
+assets/
