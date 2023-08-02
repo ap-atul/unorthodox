@@ -51,8 +51,8 @@ We may or may not add advertisement to the app. Advertisement will be complaint 
 
 ## Children's Privacy
 
-The app does not address anyone under the age of 18. The developer does not knowingly collect 
-personally identifiable information from children under 18. If you are a parent or guardian and 
+The app does not address anyone under the age of 16. The developer does not knowingly collect 
+personally identifiable information from children under 16. If you are a parent or guardian and 
 you are aware that your child has provided us with personal information by email, 
 please contact the developer so that it will be able to take necessary actions.
 
